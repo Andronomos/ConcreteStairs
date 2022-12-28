@@ -9,7 +9,14 @@ public class ModBlockLootTables extends BlockLoot {
 	@Override
 	protected void addTables() {
 		ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(b -> {
-			this.dropSelf(b);
+			String blockType = b.getClass().getSimpleName();
+
+			switch(blockType) {
+				case "SlabBlock" -> {
+					this.add(b, BlockLoot::createSlabItemTable);
+				}
+				default -> this.dropSelf(b);
+			}
 		});
 	}
 
