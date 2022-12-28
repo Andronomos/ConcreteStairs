@@ -12,9 +12,7 @@ public class ModBlockLootTables extends BlockLoot {
 			String blockType = b.getClass().getSimpleName();
 
 			switch(blockType) {
-				case "SlabBlock" -> {
-					this.add(b, BlockLoot::createSlabItemTable);
-				}
+				case "SlabBlock" -> this.add(b, BlockLoot::createSlabItemTable);
 				default -> this.dropSelf(b);
 			}
 		});
